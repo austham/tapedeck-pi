@@ -11,23 +11,24 @@ class SpotifyAPI:
         self.session = requests.Session()
         self.session.headers.update({"Authorization": f"Bearer {access_token}"})
 
-    def play(self, uri) -> dict:
+    def play(self, uri) -> None:
         #TODO: Add support for no active device, play playlist, play artist
-        response = self.session.put(f"{self.base_url}/me/player/play",
+        target_url = f"{self.base_url}/me/player/play"
+        response = self.session.put(target_url,
             json = {
                 "context_uri": uri,
             }
         )
-        if response.status_code != 200:
-            raise KeyError(f"Could not play {uri}! \n Response: {response.json()}")
-
-        return response.json()
+        # Spotify returns empty response if play is successful
+        if response.status_code != 204:
+            raise KeyError(f"Could not play {uri}! \n Response: {response}")
     
     def get_media(self, id, type) -> dict:
         if not self.type_is_media(type):
             raise ValueError(f"Type must be of album, artist, playlist, or track. Received {type}")
-        
-        response = self.session.get(f"{self.base_url}/{type}s/{id}")
+        target_url = f"{self.base_url}/{type}s/{id}"
+
+        response = self.session.get(target_url)
         if response.status_code == 404:
             return None
         if response.status_code != 200:

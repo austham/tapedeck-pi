@@ -24,10 +24,9 @@ class TestSpotifyAPI_Positive(unittest.TestCase):
 
     @patch.object(Session, 'put')
     def test_play(self, mock_get):
-        mock_get.return_value.status_code = 200
-        mock_get.return_value.json.return_value = {"test": "test"}
+        mock_get.return_value.status_code = 204
         result = self.spotify.play('id')
-        self.assertEqual(result, {"test": "test"})
+        assert result is None
 
     def test_id_to_uri(self):
         self.assertEqual(self.spotify.id_to_uri('id', "track"), "spotify:track:id")
