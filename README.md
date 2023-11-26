@@ -2,10 +2,6 @@
 
 This repo is for a project built using a Raspberry Pi, an RFID reader, and the Spotify API to simulate playing music off of physical media.
 
-Demo:
-
-https://github.com/austham/tapedeck-pi/assets/126805926/f2d62de8-96af-480f-8b82-6492e1d0676f
-
 ## Requirements
 
 ### Hardware:
@@ -38,5 +34,6 @@ Note on writing IDs: the ID of the album can be located at the end of the URL wh
 
 ## TODO:
 - Add device initilization. Playing albums currently returns 404 if there is not already an active Spotify device.
+- Add demo video
 
 
