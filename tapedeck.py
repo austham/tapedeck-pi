@@ -20,10 +20,12 @@ def write_ids_to_tag(reader : SimpleMFRC522):
 
         except KeyboardInterrupt:
                 GPIO.cleanup()
+                break
 
 def read_and_play_ids(reader : SimpleMFRC522, spotify : SpotifyAPI):
     while True:
         try:
+            print("Waiting for an RFID tag...")
             id, text = reader.read()
             print(f"Tag ID: {id}")
             print(f"Album ID: {text}")
@@ -36,6 +38,7 @@ def read_and_play_ids(reader : SimpleMFRC522, spotify : SpotifyAPI):
 
         except KeyboardInterrupt:
             GPIO.cleanup()
+            break
 
 if __name__ == '__main__':
     auth = SpotifyAuth(CLIENT_ID, REDIRECT_URI, CLIENT_SECRET)
@@ -45,7 +48,7 @@ if __name__ == '__main__':
 
     # cli interface
     while continue_flag:
-        print("Welcome to TapeDeck-Pi! Please select an option:")
+        print("\nWelcome to TapeDeck-Pi! Please select an option:")
         print("1. Write Spotify Album IDs to tags")
         print("2. Play Spotify Albums from tags")
         print("3. Exit")
