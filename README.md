@@ -2,6 +2,10 @@
 
 This repo is for a project built using a Raspberry Pi, an RFID reader, and the Spotify API to simulate playing music off of physical media.
 
+## Demo
+
+![](assets/demo.mov)
+
 ## Requirements
 
 ### Hardware:
